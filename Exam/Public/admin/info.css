@@ -1,0 +1,18 @@
+
+.table2ge{ width:100%; border:0px; display:block;border-collapse:inherit}
+.table2ge tr{ display:block;border-collapse:inherit}
+.table2ge tr td{ padding:5px; display:block;border-collapse:inherit}
+.table2ge tr .td1{ width:120px; text-align:right; font-weight:bold; width:100%;}
+.table2ge tr .td2{ width:auto;width:100%;}
+
+.info_form1{ margin-bottom:25px;}
+.info_form1 input.txt{ width:150px; border:solid #666 1px; padding:2px;}
+.info_form1 input.txt_x{width:60px;border:solid #666 1px; padding:2px;}
+.info_form1{}
+.info_form1 .area{ width:300px; height:60px;border:solid #666 1px; padding:2px; float:left;}
+.info_form1 ul{ margin:0px; padding:0px; list-style:none; width:100%; overflow:hidden; height:auto; padding-bottom:5px; padding-top:5px;}
+.info_form1 ul li{ margin:0px; padding:0px; list-style:none; overflow:hidden; height:auto; text-align:left;}
+.info_form1 ul li.li1{ float:left; width:120px; text-align:right; padding-top:3px; padding-bottom:3px; }
+.info_form1 ul li.li2{ margin-left:120px; text-align:left; padding-left:5px; color:#666;padding-top:3px; padding-bottom:3px; }
+
+.red{ color:#ff0000;}

@@ -1,0 +1,28 @@
+Lightbox图片放大插件，jQuery弹出层放大插件 我爱模板推荐
+
+jQuery Lightbox弹出层图片放大插件，支持上一张下一张和显示图片标题的功能。使用非常方便，点击缩略图，就会出现加载动画，加载完毕，即可显示大图，如果设置了上一张下一张，鼠标移动到图片上，就会显示按钮。点击空白区域，放大图片的弹出层就会消失。
+
+使用方法：
+1、在head引入相关js、css
+<link rel="stylesheet" href="css/lightbox.css" media="screen"/>
+<script src="http://www.5imoban.net/download/jquery/jquery-1.9.0.min.js"></script>
+<script src="js/lightbox-2.6.min.js"></script>
+
+2、图片具体设置：
+   1)不支持上一张下一张的单张放大：
+      ●在缩略图外面套一个a标签，如下：
+      <a href="img/demopage/image-1.jpg" data-lightbox="example-1">
+	<img src="img/demopage/thumb-1.jpg"/>
+      </a>
+      a标签的href地址就是大图地址，data-lightbox就是触发器，里面的值请以英文字母开始，随便填什么英文。
+   2)支持上一张下一张的单张放大：
+      ●在缩略图外面套一个a标签，如下：
+      <a href="img/demopage/image-1.jpg" data-lightbox="example">
+	<img src="img/demopage/thumb-1.jpg"/>
+      </a>
+      <a href="img/demopage/image-1.jpg" data-lightbox="example">
+	<img src="img/demopage/thumb-1.jpg"/>
+      </a>
+      和上面一样，但是data-lightbox的值需要一致。
+
+更多网站素材欢迎访问：http://www.5imoban.net/sucai/

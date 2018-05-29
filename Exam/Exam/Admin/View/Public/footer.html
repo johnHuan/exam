@@ -1,0 +1,122 @@
+<div class="clear" style="height:1px;"></div>
+<script>
+    var btchazhao_val_old="";
+    $(".btchazhao").click(function(){
+
+        if(btchazhao_val_old==""){
+            btchazhao_val_old=$(this).html();
+        }
+        if($(this).html()==btchazhao_val_old){
+            $(this).html("隐藏");
+        }else{
+            $(this).html(btchazhao_val_old);
+        }
+        $(".mytitle .right").toggle();
+    })
+    var isshowload=1;
+
+    loadico.hide();
+    //window.parent 注:如果窗口本身是顶层窗口,parent属性返回的是对自身的引用
+    $("input[type='submit']").each(function(){
+        var classname=$(this).attr("class");
+        var isbool=1;
+
+        if(typeof(classname)!="undefined"&&classname.indexOf("notalert")!=-1){
+            isbool=0;
+        }
+        if(isbool==1){
+            $(this).click(function(){
+                window.parent.loadico.show({txt:"正在提交"}); //window.parent 注:如果窗口本身是顶层窗口,parent属性返回的是对自身的引
+                window.setTimeout(function(){
+                    window.parent.loadico.hide();
+                },3000);
+            });
+        }
+    });
+    $("a").each(function(){
+        var data_lightbox=$(this).attr("data-lightbox");
+        var classname=$(this).attr("class");
+        var isbool=1;
+        if(typeof(classname)!="undefined"&&classname.indexOf("notalert")!=-1){
+            isbool=0;
+        }
+        var href=$(this).attr("href");
+        if(href){
+            //alert(href);
+            var href1=href.split("?");
+            var arr=href1[0].split(".");
+            var ext=arr[arr.length-1];
+            if(ext=="php" || ext=="asp" || ext=="aspx"){
+
+                if(isbool==1){
+                    $(this).click(function(){
+                        if(typeof(window.parent.loadico)!="undefined"){
+                            window.parent.loadico.show(); //window.parent 注:如果窗口本身是顶层窗口,parent属性返回的是对自身的
+                        }
+                    });
+                }
+            }
+        }
+    });
+    $(".bt").click(function(){
+        if(typeof(window.parent.loadico)!="undefined"){
+            window.parent.loadico.show(); //window.parent 注:如果窗口本身是顶层窗口,parent属性返回的是对自身的
+        }
+    });
+    $("#select_to_url").each(function(){
+        var num=$(this).attr("data-max");
+        var page=parseInt($(this).attr("data-page"));
+        if(typeof(num)=="undefined"){
+            alert("下拉框没有最大页data-max属性,且没有值");
+            return false;
+        }
+        num=parseInt(num);
+        for(var i=1;i<=num;i++){
+            if(i<50){
+                var selected="";
+                if(i==page){
+                    selected="selected";
+                }
+                $(this).append("<option value='"+i+"' "+selected+">"+i+"</option>");
+            }
+        }
+        $(this).bind("change",function(){
+            var cururl=String(window.location);
+            var arr=cururl.split("?");
+            window.location=urlcanshu(page,$(this).val());;
+
+        })
+    });
+
+</script>
+<?php
+ $_SESSION["msg"]="";
+?>
+<script>
+    var tab_lis=$(".tab ol li");
+    tab_lis.each(function(){
+        $(this).click(function(){
+
+            $(this).addClass("cur");
+            tab_lis.not($(this)).removeClass("cur");
+            var pages=$(".tab_page");
+            if($(this).html().indexOf("全部展开")!=-1){
+                pages.show();
+            }else{
+                var page_cur=pages.eq($(this).index());
+                page_cur.show();
+                pages.not(page_cur).hide();
+            }
+        });
+    })
+</script>
+<script>
+    $("input[name='ckall']").click(function(){
+
+        if($(this)[0].checked){
+            $("input[name='ck']").attr("checked","checked");
+        }else{
+            $("input[name='ck']").removeAttr("checked");
+        }
+    });
+</script>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>全国城市三级联动</title>
+<style type="text/css">
+body{ background:#EEEEEE;margin:0; padding:0; font-family:"微软雅黑", Arial, Helvetica, sans-serif; }
+a{ color:#006600; text-decoration:none;}
+a:hover{color:#990000;}
+.top{ margin:5px auto; color:#990000; text-align:center;}
+.info select{ border:1px #993300 solid; background:#FFFFFF;}
+.info{ margin:5px; text-align:center;}
+.info #show{ color:#3399FF; }
+.bottom{ text-align:right; font-size:12px; color:#CCCCCC; width:1000px;}
+</style>
+</head>
+<body>
+<div class="top">
+	<h1>全国城市三级联动</h1>
+</div>
+<div class="info">
+	<div>
+	<select id="fsProvince" name="s_province"></select>&nbsp;&nbsp;
+    <select id="fsCity" name="s_city" ></select>&nbsp;&nbsp;
+    <select id="fsCountry" name="s_county" onchange="showArea()"></select>
+    <script type="text/javascript" src="area.js"></script>
+    <script type="text/javascript">_init_area();</script>
+    </div>
+    <div id="show"></div>
+</div>
+<div class="bottom">
+  &copy;<a href="http://skyday.cn/">Asong</a>&nbsp; | &nbsp;
+  <a href="http://weibo.com/mrasong">Weibo</a>&nbsp; | &nbsp;
+  <a href="http://t.qq.com/skyday">QQT</a>&nbsp; | &nbsp;
+  <div style="visibility:hidden"><script src="http://s96.cnzz.com/stat.php?id=1080822&web_id=1080822" language="JavaScript"></script></div>
+</div>
+<script type="text/javascript">
+var Gid  = document.getElementById ;
+var showArea = function(){
+	var s_city=document.getElementById('s_city');
+	var s_province=document.getElementById('s_province');
+	var s_county=document.getElementById('s_county');
+	var show=document.getElementById('show');
+	document.getElementById('show').innerHTML = "" + s_province.options[s_province.selectedIndex].value + "" + 
+							s_city.options[s_city.selectedIndex].value + "" + 
+							s_county.options[s_county.selectedIndex].value + ""
+							alert(show.innerHTML);
+}
+//Gid('s_county').setAttribute('onchange','showArea()');
+function SelectOption(id,value){
+	var obj= document.getElementById(id);
+	var len=obj.options.length;
+	
+	for(var j=0;j<len;j++){
+		if(obj.options[j].value==value){
+			obj.selectedIndex=j;alert(len);
+		}
+	}
+	if(id=="s_province"){
+	change(1);
+	}else if(id=="s_city"){
+	change(2);
+	}
+}
+SelectOption("s_province","福建省");
+SelectOption("s_city","漳州市");
+SelectOption("s_county","云霄县");
+</script>
+</body>
+</html>

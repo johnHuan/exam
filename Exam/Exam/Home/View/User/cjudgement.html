@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>顺序练习判断题</title>
+    <link rel="stylesheet" media="screen" type="text/css" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <style>
+        h1, h2, h3, h4 div{
+            margin: 0;
+            padding: 0;
+        }
+
+        .choices {
+            text-indent: 20px;
+        }
+
+        .well {
+            padding-top: 0 !important;
+        }
+
+        .header h2 {
+            text-align: center;
+            height: 45px;
+            line-height: 45px;
+
+            font-size: 15px;
+            overflow: hidden;
+            z-index: 10;
+            background-color: #1BBC9B;
+            width: 100%;
+            position: relative;
+            color: #fff;
+        }
+
+        .myheader h3 {
+            padding-top: 10px;
+        }
+        .panel-footer {
+            /*text-align: center;*/
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 0;
+        }
+        .panel-footer .row{
+            text-align: center;
+            margin: 5px 0;
+            height: 30px;
+            line-height: 30px;
+        }
+        .response{
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="container">
+<br>
+<div class="box">
+    <div class="header">
+        <h2 class="">顺序练习判断题</h2>
+    </div>
+    <!--中间题目区域 start-->
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">{$id}/{$total}. {$question["question"]}--{$question["answer"]}--
+                <span class="tid">{$question["jid"]}</span>
+            </h3>
+        </div>
+        <div class="panel-body">
+                <button class="btn btn-xs btn-info" name="answer" value="1">正确</button>
+                <button class="btn btn-xs btn-info" name="answer" value="0">错误</button>
+            <button class="btn btn-xs btn-primary-outline pull-right" name="fav">加入收藏</button>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-9 info response"></div>
+                <div class="col-xs-2 info">
+                    <if condition="$id eq 1">
+                        <button class="disabled btn btn-xs btn-info" name="prev" value="1">上一题</button>
+                    <else />
+                        <button class="btn btn-xs btn-info" name="prev" value="1">上一题</button>
+                    </if>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--中间题目区域 end-->
+<include file="Public:_footerexam"/>
+<script>
+    /**
+     * 点击作答
+     */
+    $("button[name='answer']").on('click', function (e) {
+        var answer = this.value;
+        $.ajax({
+            type: 'post',
+            data: {
+                jid: {$id},
+                answer: answer
+            },
+            url: '__ACTION__',
+            beforeSend: function (e) {
+                // alert("答案提交中。。。");
+            },
+            error: function (e) {
+                alert("ajax出错。。。");
+            },
+            success: function (res) {
+                if (res['isRight'] == true && res["end"] == false){
+                    // 回答正确, 但是还没到最后一题
+                    $(".response").html("<span class='text-success'><span class='glyphicon glyphicon-ok'></span>恭喜您！回答正确！！:)</span>");
+                    setTimeout(function () {
+                        window.location.href = "__ACTION__?id={$id+1}";
+                    }, 500);
+                } else if (res['isRight'] == false && res["end"] == false){
+                    $(".response").html("<span class='text-success'><span class='glyphicon glyphicon-remove'></span>回答错误！！:)</span>");
+                    setTimeout(function () {
+                        window.location.href = "__ACTION__?id={$id+1}";
+                    }, 500);
+                } else if(res["end"] == true){
+                    // 已经到了最后一题了
+                    $(".response").html("<span class='text-success'><span class='glyphicon glyphicon-ok'></span>您已经完成了所有判断题的练习<span class='glyphicon glyphicon-flag'></span></span>");
+                } else {
+                    $(".response").html("<span class='text-success'><span class='glyphicon glyphicon-ok'></span>系统异常，请重试<span class='glyphicon glyphicon-flag'></span></span>");
+                }
+            },
+            complete: function (e) {
+                // alert("ajax请求完成...");
+            }
+        });
+    });
+
+    /**
+     * 加入收藏夹
+     */
+    $("button[name='fav']").on('click', function (e) {
+        tid = $(".tid").html();
+        $.ajax({
+            type: 'post',
+            data: {
+                id: {$id},
+                jid: tid
+            },
+            url: '__CONTROLLER__/addFav',
+            error: function (e) {
+
+            },
+            success: function (res) {
+                if (res == 0){
+                    $(".response").html("<span class='text-success'>该题已经加入您的收藏夹了</span>");
+                } else {
+                    $(".response").html("<span class='text-success'>添加成功</span>");
+                }
+            },
+        });
+    });
+
+    /**
+     * 上一题
+     */
+    $("button[name='prev']").on('click', function (e) {
+        window.location.href = "__ACTION__?id={$id-1}";
+    });
+
+</script>

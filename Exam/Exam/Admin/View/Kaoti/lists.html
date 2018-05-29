@@ -1,0 +1,49 @@
+<include file="Public:_meta" />
+<include file="Public:_header" />
+<include file="Public:_menu" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/fileinput.css" media="all" />
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<section class="Hui-article-box">
+    <ol class="breadcrumb" style="margin-bottom: 5px;">
+        <li>考题管理</li>
+        <li class="active">考题列表</li>
+    </ol>
+    <div id="iframe_box" class="Hui-article">
+        <div class="page-container"> <!--标题开始-->
+            <!--主体开始-->
+            <div class="mycontent paddingtop80">
+                <table class="tablelist tableloglat" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th class="tdck"><input type="checkbox" name="ckall"/></th>
+                        <th class="td1">考题编号</th>
+                        <th class="td2">考题性质</th>
+                        <th class="td3">上传者</th>
+                        <th class="td3">考题题干</th>
+                        <th class="td4">正确答案</th>
+                        <th class="td6">状态</th>
+                        <th class="tdop">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody style="text-align:center;">
+                    <foreach name="list" item="value">
+                        <tr>
+                            <td class="tdck"><input type="checkbox" name="ck" value="{$value.uid}" title="{$value.uid}"/></td>
+                            <td class="td1">{$value.nickname}</td>
+                            <td class="td3">{$value.sex}</td>
+                            <td class="td4">{$value.phone}</td>
+                            <td class="td5">{$value.address}</td>
+                            <td class="td5">{$value.exam_count}</td>
+                            <td class="td7">{$value.state}</td>
+                            <td class="tdop"><a href="__CONTROLLER__/info/id/{$value.id}">编辑</a>|<a
+                                    href="__CONTROLLER__/delete/id/{$value.id}">删除</a></td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<include file="Public:_footer" />

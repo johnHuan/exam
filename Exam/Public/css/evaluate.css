@@ -1,0 +1,62 @@
+
+body {
+	background: #eee none repeat scroll 0 0;
+	font-family: "Open Sans",Arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif;
+	padding: 20px 0;
+}
+.header {
+	background: #3498db none repeat scroll 0 0;
+	border-radius: 7px 7px 0 0;
+	color: #fff;
+
+}
+.wrapper {
+	border-radius: 7px;
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.03);
+}
+.content {
+	background: #fff none repeat scroll 0 0;
+	border-radius: 0 0 7px 7px;
+}
+.toolbar {
+	background: #2c3e50 none repeat scroll 0 0;
+	padding-left: 20px;
+	padding-top: 5px;
+}
+.toolbar li a {
+	border: medium none;
+	color: #fff;
+}
+.toolbar li a:hover {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	border: medium none;
+}
+.toolbar .nav-tabs {
+	border-bottom: medium none;
+}
+.disabled{
+	cursor: not-allowed;
+}
+#kaoChang {
+	display: block;
+}
+#suShe{
+	display: none;
+}
+.first{
+	width:50%;margin-left:-20px;
+}
+.second{
+	width:51%;
+}
+#kaochangResult{
+	display: none;
+}
+#suSheResult{
+	display: none;
+}
+
+div.well div.logo img{
+	height: 80px;
+	line-height: 60px;
+}

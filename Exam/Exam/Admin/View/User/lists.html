@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="target-densitydpi=medium-dpi,  initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$webtitle}</title>
+    <include file="Public:head"/>
+</head>
+<body>
+<include file="Public:header"/>
+<include file="Public:menu"/>
+<div class="panel" id="panel">
+    <div class="mybody">
+
+        <!--标题开始-->
+        <div class="mytitle" style="z-index:100;">
+            <div class="con">
+                <div class="left">
+                    <div class="tt">{$mytitle}&nbsp;({$item.num}/{$item.rowcountz})</div>
+                    <div class="bb"><a href="{:U('user/add')}">添加用户</a></div>
+                    <span class="btchazhao">查找</span></div>
+                <div class="right">
+                    <form id="form1" name="form1" method="get" action="__CONTROLLER__/lists/">
+                        <div class="l"></div>
+                        <div class="r">
+                            <div class="row">
+                                <span class="t">级别<em>：</em></span>
+                                <span class="f">
+                                    <select name="root" id="root" title="级别">
+                                        <foreach name="rootlist" item="row">
+                                            <option value="{$row.value}">{$row.name}</option>
+                                        </foreach>
+                                    </select>
+					            </span>
+                            </div>
+                            <div class="row">
+                                <span class="t">状态<em>：</em></span>
+                                <span class="f">
+						<select name="state" id="state" title="状态">
+						<foreach name="statelist" item="row">
+						<option value="{$row.value}">{$row.name}</option>
+						</foreach>
+						</select>
+					</span>
+                            </div>
+                            <div class="row">
+                                <span class="t">关键词<em>：</em></span><span class="f"><input type="text" name="key"
+                                                                                           id="key" value=""
+                                                                                           class="txt1s"/></span>
+                            </div>
+                            <div class="row">
+                                <span class="t">ID<em>：</em></span><span class="f"><input type="text" name="id" id="id"
+                                                                                          value=""
+                                                                                          class="txt1s"/></span>
+                            </div>
+                            <div class="row">
+                                <span class="t ts">&nbsp;</span><span class="f"><input type="hidden" name="table"
+                                                                                       id="table" value=""/><input
+                                    type="submit" name="search1" id="button" value="查找" class="btsearch44"/></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--标题结束-->
+        <!--主体开始-->
+        <div class="mycontent paddingtop80">
+            <table class="tablelist tableloglat" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="tdck"><input type="checkbox" name="ckall"/></th>
+                    <th class="td1">微信昵称</th>
+                    <th class="td2">性别</th>
+                    <th class="td3">电话</th>
+                    <th class="td3">地址</th>
+                    <th class="td4">做题次数</th>
+                    <th class="td6">状态</th>
+                    <th class="tdop">操作</th>
+                </tr>
+                </thead>
+                <tbody style="text-align:center;">
+                <foreach name="list" item="value">
+                    <tr>
+                        <td class="tdck"><input type="checkbox" name="ck" value="{$value.uid}" title="{$value.uid}"/></td>
+                        <td class="td1">{$value.nickname}</td>
+                        <td class="td3">{$value.sex}</td>
+                        <td class="td4">{$value.phone}</td>
+                        <td class="td5">{$value.address}</td>
+                        <td class="td5">{$value.exam_count}</td>
+                        <td class="td7">{$value.state}</td>
+                        <td class="tdop"><a href="__CONTROLLER__/info/id/{$value.id}">编辑</a>|<a
+                                href="__CONTROLLER__/delete/id/{$value.id}">删除</a></td>
+                    </tr>
+                </foreach>
+                </tbody>
+            </table>
+        </div>
+        <!--主体结束-->
+
+    </div>
+    <div class="pagenav">{$show}</div>
+    <div style=" text-align:center;"><a data-url="{:U('delete')}" onclick="Del(this);">删除选中</a></div>
+</div>
+<include file="Public:foot"/>
+<include file="Public:footer"/>
+</body>
+</html>
